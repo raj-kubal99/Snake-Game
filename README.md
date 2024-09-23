@@ -21,6 +21,7 @@ You can play the Snake Game live at [https://raj-kubal99.github.io/Snake-Game/](
 - **GitHub Actions**: Automated deployment process to host the application on GitHub Pages.
 
 ## Project Structure
+```
 /Snake-Game 
 ├── /public 
 │ └── index.html 
@@ -32,7 +33,7 @@ You can play the Snake Game live at [https://raj-kubal99.github.io/Snake-Game/](
 │ ├── App.css 
 │ └── index.js 
 └── README.md
-
+```
 
 ## Installation
 
@@ -63,9 +64,9 @@ To run the project locally, follow these steps:
 ![Game Interface](./public/images/game_end.png)
 
 ## Future Improvements
--Add sound effects and animations to enhance the gaming experience.
--Implement a leaderboard to track high scores.
--Optimize the game for mobile devices with touch controls.
+- Add sound effects and animations to enhance the gaming experience.
+- Implement a leaderboard to track high scores.
+- Optimize the game for mobile devices with touch controls.
 
 ## Acknowledgments
 Special thanks to the open-source community for providing resources and inspiration throughout the development process.
