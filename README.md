@@ -62,9 +62,10 @@ To run the project locally, follow these steps:
 ![Game Interface](./public/images/game_play.png)
 ![Game Interface](./public/images/game_end.png)
 
-Future Improvements
-Add sound effects and animations to enhance the gaming experience.
-Implement a leaderboard to track high scores.
-Optimize the game for mobile devices with touch controls.
-Acknowledgments
+## Future Improvements
+-Add sound effects and animations to enhance the gaming experience.
+-Implement a leaderboard to track high scores.
+-Optimize the game for mobile devices with touch controls.
+
+## Acknowledgments
 Special thanks to the open-source community for providing resources and inspiration throughout the development process.
