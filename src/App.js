@@ -30,23 +30,6 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
   const playgroundRef = useRef();
 
-  useEffect(() => {
-    if (!isStarted) return;
-
-    if (
-      snake[snake.length - 1].x === 100 ||
-      snake[snake.length - 1].x === 0 ||
-      snake[snake.length - 1].y === 100 ||
-      snake[snake.length - 1].y === -4
-    ) {
-      setGameOver(true);
-      return;
-    }
-
-    const interval = setInterval(move, initialSnake.speed);
-    return () => clearInterval(interval);
-  },[isStarted,snake]);
-
   const move = () => {
     const tmpSnake = [...snake];
     let x = tmpSnake[tmpSnake.length - 1].x,
@@ -74,9 +57,26 @@ function App() {
     setSnake(tmpSnake);
   };
 
+  useEffect(() => {
+    if (!isStarted) return;
+
+    if (
+      snake[snake.length - 1].x === 100 ||
+      snake[snake.length - 1].x === 0 ||
+      snake[snake.length - 1].y === 100 ||
+      snake[snake.length - 1].y === -4
+    ) {
+      setGameOver(true);
+      return;
+    }
+
+    const interval = setInterval(move, initialSnake.speed);
+    return () => clearInterval(interval);
+  },[isStarted,snake]);
+
   return (
     <>
-    <div style={{backgroundColor:"black", width:"100%", height:"100%", backgroundSize:"cover"}}></div>
+    
     <div
       className="App"
       onKeyDown={(e) => setLastDirection(e.key)}
