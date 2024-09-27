@@ -1,18 +1,19 @@
-/* Add this to your App.css file */
-
 body {
   margin: 0;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #121212; /* Darker background for the body */
+  background-color: #121212;
 }
 
+/* Base styles */
 .App {
-  width: 500px;
-  height: 500px;
-  border: 1px solid #ffffff; /* White border for contrast */
+  width: 90vw; /* Default for smaller screens */
+  max-width: 500px; /* Maximum width for all screens */
+  height: 90vw; /* Make height relative to width for a square aspect ratio */
+  max-height: 500px; /* Maximum height to maintain a square look */
+  border: 1px solid #ffffff;
   position: relative;
   display: flex;
   justify-content: center;
@@ -20,45 +21,91 @@ body {
   flex-direction: column;
   font-family: monospace;
   border-radius: 10px;
-  background-color: #1e1e1e; /* Dark grey background for the box */
+  background-color: #1e1e1e;
 }
 
 button {
   font-family: inherit;
   font-size: 1.5rem;
   border-radius: 10px;
-  color: white; /* Change text color to white for better visibility */
+  color: white;
   width: 50%;
   max-width: 150px;
   height: 50px;
   border: none;
-  background-color: darkslategray; /* Bright pink for buttons */
+  background-color: darkslategray;
   font-weight: 600;
   z-index: 4;
   cursor: pointer;
 }
 
 .text {
-  color: #ffffff; /* White text for general information */
+  color: #ffffff;
   z-index: 4;
-  opacity: 0.7; /* Slightly more visible on dark background */
+  opacity: 0.7;
 }
 
 .arrow-msg {
   font-size: 1rem;
   margin: 10px;
-  color: #cccccc; /* Light grey for instructions */
+  color: #cccccc;
 }
 
 .game-over {
   font-size: 3rem;
-  color: #ff4d4d; /* Bright red for game over */
+  color: #ff4d4d;
 }
 
 .count {
   position: absolute;
   font-size: 2rem;
   bottom: 0px;
-  color: #ffffff; /* White for score */
-  opacity: 0.8; /* Slightly more visible */
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+  .App {
+    height: 80vh; /* Adjust height for mobile */
+  }
+  
+  button {
+    font-size: 1.2rem; /* Smaller buttons for mobile */
+  }
+
+  .count {
+    font-size: 1.5rem; /* Smaller score text */
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 601px) and (max-width: 900px) {
+  .App {
+    height: 85vh; /* Adjust height for tablet */
+  }
+
+  button {
+    font-size: 1.4rem; /* Medium buttons for tablet */
+  }
+
+  .count {
+    font-size: 1.8rem; /* Medium score text */
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 901px) {
+  .App {
+    height: 90vw; /* Set height relative to width for a square aspect ratio */
+    max-height: 500px; /* Maximum height */
+  }
+
+  button {
+    font-size: 1.5rem; /* Default button size for desktop */
+  }
+
+  .count {
+    font-size: 2rem; /* Default score text */
+  }
 }

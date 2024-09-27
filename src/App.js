@@ -74,55 +74,80 @@ function App() {
     return () => clearInterval(interval);
   },[isStarted,snake]);
 
+  const handleKeyDown = (e) => {
+    setLastDirection(e.key);
+  };
+
+  // Touch event handlers
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    playgroundRef.current.touchStartX = touch.clientX;
+    playgroundRef.current.touchStartY = touch.clientY;
+  };
+
+  const handleTouchEnd = (e) => {
+    const touch = e.changedTouches[0];
+    const deltaX = touch.clientX - playgroundRef.current.touchStartX;
+    const deltaY = touch.clientY - playgroundRef.current.touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Horizontal swipe
+      if (deltaX > 0) setLastDirection("ArrowRight");
+      else setLastDirection("ArrowLeft");
+    } else {
+      // Vertical swipe
+      if (deltaY > 0) setLastDirection("ArrowDown");
+      else setLastDirection("ArrowUp");
+    }
+  };
+
   return (
     <>
     
-    <div
-      className="App"
-      onKeyDown={(e) => setLastDirection(e.key)}
-      ref={playgroundRef}
-      tabIndex={0}
-    >
-      {isStarted && <div className="count"> score: {snake.length - 3}</div>}
+      <div
+        className="App"
+        onKeyDown={handleKeyDown}
+        ref={playgroundRef}
+        tabIndex={0}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {isStarted && <div className="count"> score: {snake.length - 3}</div>}
 
-      {!isStarted && (
-        <>
-          <button
-            onClick={() => {
-              setIsStarted(true);
-              playgroundRef.current.focus();
-            }}
-            type="submit"
-          >
-            Start
-          </button>
-          <div className="arrow-msg text">Press Arrows keys to play!</div>
-        </>
-      )}
-      {gameOver && (
-        <>
-          <div className="game-over text">Game Over!</div>
-          <button
-            onClick={() => {
-              setIsStarted(true);
-              setGameOver(false);
-              setSnake(initialSnake.snake);
-              setLastDirection(initialSnake.direction);
-              playgroundRef.current.focus();
-            }}
-            type="submit"
-          >
-            Restart
-          </button>
-        </>
-      )}
-      <Snake snake={snake} lastDirection={lastDirection} />
-      {!gameOver && (
-        <>
-          <Food position={foodPosition} />
-        </>
-      )}
-    </div>
+        {!isStarted && (
+          <>
+            <button
+              onClick={() => {
+                setIsStarted(true);
+                playgroundRef.current.focus();
+              }}
+              type="submit"
+            >
+              Start
+            </button>
+            <div className="arrow-msg text">Press Arrows keys to play!</div>
+          </>
+        )}
+        {gameOver && (
+          <>
+            <div className="game-over text">Game Over!</div>
+            <button
+              onClick={() => {
+                setIsStarted(true);
+                setGameOver(false);
+                setSnake(initialSnake.snake);
+                setLastDirection(initialSnake.direction);
+                playgroundRef.current.focus();
+              }}
+              type="submit"
+            >
+              Restart
+            </button>
+          </>
+        )}
+        <Snake snake={snake} lastDirection={lastDirection} />
+        {!gameOver && <Food position={foodPosition} />}
+      </div>
     </>
   );
 }
